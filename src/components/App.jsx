@@ -1,12 +1,13 @@
 import React from 'react';
-import FetchImages from 'service/FetchImages';
+import FetchImages from '../service/FetchImages';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
-import './styles.css';
+import Notification from './Notification/Notification';
+import s from './App.module.css';
 
 class App extends React.Component {
   state = {
@@ -16,11 +17,11 @@ class App extends React.Component {
     status: 'idle',
     showModal: false,
     url: null,
-    totsl: null,
+    total: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const name = this.state.name;
+    const name = this.state.name.trim().toLowerCase();
     const page = this.state.page;
     if (prevState.name !== name) {
       setTimeout(() => {
@@ -72,11 +73,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="Container">
+      <div className={s.App}>
         <Searchbar onSubmit={this.getSubmitName} />
-        {this.state.total === 0 && (
-          <p className="text">Введіть правильну назву</p>
-        )}
+        {this.state.total === 0 && <Notification />}
         <ImageGallery>
           <ImageGalleryItem
             content={this.state.content}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 async function FetchImages(name, page) {
   const URL = 'https://pixabay.com/api/';
@@ -14,5 +15,10 @@ async function FetchImages(name, page) {
   });
   return await axios.get(`${URL}?${options}`);
 }
+
+FetchImages.propTypes = {
+  name: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+};
 
 export default FetchImages;

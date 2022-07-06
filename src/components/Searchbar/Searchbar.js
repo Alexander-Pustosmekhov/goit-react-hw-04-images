@@ -1,5 +1,7 @@
-import '../styles.css';
 import { ImSearch } from 'react-icons/im';
+import PropTypes from 'prop-types';
+import '../styles.css';
+import s from './Searchbar.module.css';
 const { Component } = require('react');
 
 class Searchbar extends Component {
@@ -25,19 +27,19 @@ class Searchbar extends Component {
 
   render() {
     return (
-      <header className="Searchbar">
-        <form className="SearchForm" onSubmit={this.handleSubmit}>
-          <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">
+      <header className={s.Searchbar}>
+        <form className={s.SearchForm} onSubmit={this.handleSubmit}>
+          <button type="submit" className={s.SearchFormButton}>
+            <span className={s.SearchFormButtonLabel}>
               <ImSearch />
             </span>
           </button>
 
           <input
-            className="SearchForm-input"
+            className={s.SearchFormInput}
             type="text"
-            // autocomplete="off"
-            // autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             value={this.state.name}
             onChange={this.inputChange}
@@ -47,5 +49,7 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = { onSubmit: PropTypes.func.isRequired };
 
 export default Searchbar;

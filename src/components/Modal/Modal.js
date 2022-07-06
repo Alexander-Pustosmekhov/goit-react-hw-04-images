@@ -1,5 +1,6 @@
-import s from './Modal.module.css';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
+import s from './Modal.module.css';
 const { Component } = require('react');
 
 const modalRoot = document.querySelector('#modal-root');
@@ -28,8 +29,8 @@ class Modal extends Component {
   render() {
     const { getFind } = this.props;
     return createPortal(
-      <div className={s.backdrop} onClick={this.handleBackdropClick}>
-        <div className={s.content}>
+      <div className={s.Overlay} onClick={this.handleBackdropClick}>
+        <div className={s.Modal}>
           <img src={getFind} alt="Name" />
         </div>
       </div>,
@@ -37,5 +38,10 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  getFind: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default Modal;
