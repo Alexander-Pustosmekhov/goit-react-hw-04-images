@@ -1,33 +1,29 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './ImageGalleryItem.module.css';
 
-class ImageGalleryItem extends Component {
-  render() {
-    const { content, toggle, getFind } = this.props;
-    return (
-      <>
-        {content.map(({ id, largeImageURL, user }) => {
-          return (
-            <li
-              className={s.ImageGalleryItem}
-              key={id}
-              onClick={() => {
-                getFind(id);
-                toggle();
-              }}
-            >
-              <img
-                src={largeImageURL}
-                alt={user}
-                className={s.ImageGalleryItemImage}
-              />
-            </li>
-          );
-        })}
-      </>
-    );
-  }
+function ImageGalleryItem({ content, toggle, getFind }) {
+  return (
+    <>
+      {content.map(({ id, largeImageURL, user }) => {
+        return (
+          <li
+            className={s.ImageGalleryItem}
+            key={id}
+            onClick={() => {
+              getFind(id);
+              toggle();
+            }}
+          >
+            <img
+              src={largeImageURL}
+              alt={user}
+              className={s.ImageGalleryItemImage}
+            />
+          </li>
+        );
+      })}
+    </>
+  );
 }
 
 ImageGalleryItem.propTypes = {
