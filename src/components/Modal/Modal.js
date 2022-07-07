@@ -13,6 +13,7 @@ function Modal({ getFind, onClose }) {
         onClose();
       }
     };
+
     window.addEventListener('keydown', handleKeydown);
     bodyEl.classList.add('is-hidden');
     return () => {
